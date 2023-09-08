@@ -2,9 +2,19 @@ import { Header } from '../components/Header'
 import { VideoPlayer } from '../components/Video'
 import { Module } from '../components/Module'
 import { useAppSelector } from '../store'
+import { useCurrentLesson } from '../store/slices/player'
+import { useEffect } from 'react'
 
 export function Player() {
-  const modules = useAppSelector((state) => state.player.course.modules)
+  const modules = useAppSelector((state) => state.player.course?.modules)
+
+  const { currentLesson } = useCurrentLesson()
+
+  useEffect(() => {
+    if (currentLesson) {
+      document.title = `Assistindo ${currentLesson.title}`
+    }
+  }, [currentLesson])
 
   return (
     <div className="h-screen bg-zinc-950 text-zinc-50 flex justify-center items-center">
@@ -15,21 +25,15 @@ export function Player() {
             <VideoPlayer />
           </div>
           <aside className="divide-y-2 divide-zinc-900 w-80 absolute top-0 bottom-0 right-0 border-l border-zinc-800 bg-zinc-900 overflow-y-scroll scrollbar scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800">
-            <Module
-              moduleIndex={0}
-              title="Desvendando o Redux"
-              amountOfLessons={3}
-            />
-            <Module
-              moduleIndex={1}
-              title="Desvendando o Redux"
-              amountOfLessons={3}
-            />
-            <Module
-              moduleIndex={2}
-              title="Desvendando o Redux"
-              amountOfLessons={3}
-            />
+            {modules &&
+              modules.map((module, index) => (
+                <Module
+                  key={module.id}
+                  moduleIndex={index}
+                  title={module.title}
+                  amountOfLessons={module.lessons.length}
+                />
+              ))}
           </aside>
         </main>
       </div>
