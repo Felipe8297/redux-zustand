@@ -24,6 +24,8 @@ export function Module({ moduleIndex, title, amountOfLessons }: ModuleProps) {
     return state.player.course?.modules[moduleIndex].lessons
   })
 
+  const isCourseLoading = useAppSelector((state) => state.player.isLoading)
+
   return (
     <Collapsible.Root className="group" defaultOpen={moduleIndex === 0}>
       <Collapsible.Trigger className="flex w-full items-center gap-3 bg-zinc-800 p-4">
