@@ -1,4 +1,4 @@
-#Ignite Redux/Redux Toolkit e Zustand com Vite
+## Ignite Redux/Redux Toolkit e Zustand com Vite
 
 Este é um projeto de estudo criado para explorar e compreender o funcionamento do [Redux](https://redux.js.org/)/[Redux Toolkit](https://redux-toolkit.js.org/) e do [Zustand](https://github.com/pmndrs/zustand). O [Vite](https://vitejs.dev/) foi escolhido como o bundler para garantir uma configuração rápida e eficiente, permitindo um ambiente de desenvolvimento ideal para explorar essas duas bibliotecas.
 
